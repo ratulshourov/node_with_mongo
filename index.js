@@ -8,7 +8,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
     }
     else {
         console.log("Connected");
-        insertData(MyMongoCollection);
+        //insertData(MyMongoCollection);
+        deleteOneMethod(MyMongoCollection);
     }
 });
 
@@ -16,6 +17,14 @@ function insertData(MyMongoCollection) {
     var database=MyMongoCollection.db('school');
     var collection=database.collection('students');
 
-    var myobj = { name: "Company Inc", address: "Highway 37" };
+    var myobj = { name: "ashraf", address: "bd" };
     collection.insertOne(myobj);
+}
+
+function deleteOneMethod(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+
+    var myobj = {name:"ashraf"};
+    collection.deleteOne(myobj);
 }
