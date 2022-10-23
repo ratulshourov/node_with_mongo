@@ -9,7 +9,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
     else {
         console.log("Connected");
         //insertData(MyMongoCollection);
-        deleteOneMethod(MyMongoCollection);
+        //deleteOneMethod(MyMongoCollection);
+        deleteAllData(MyMongoCollection);
     }
 });
 
@@ -27,4 +28,22 @@ function deleteOneMethod(MyMongoCollection) {
 
     var myobj = {name:"ashraf"};
     collection.deleteOne(myobj);
+
+}
+
+function deleteAllData(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+
+    collection.deleteMany(function(error,ResultObj) {
+        if(error) {
+            console.log('====================================');
+            console.log('failed delete');
+            console.log('====================================');
+        }
+        else {
+            console.log(ResultObj);
+        }
+    }); 
+
 }
