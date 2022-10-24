@@ -12,7 +12,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //deleteOneMethod(MyMongoCollection);
         //deleteAllData(MyMongoCollection);
         //fineOneWithoutCondition(MyMongoCollection);
-        fineOneWithCondition(MyMongoCollection);
+        //fineOneWithCondition(MyMongoCollection);
+        fineAll(MyMongoCollection);
     }
 });
 
@@ -73,6 +74,23 @@ function fineOneWithCondition(MyMongoCollection) {
     var collection=database.collection('students');
     var findOneObj={name:"shourov"};
     collection.findOne(findOneObj,function(error,ResultObj) {
+        if(error) {
+            console.log('====================================');
+            console.log('failed');
+            console.log('====================================');
+        }
+        else {
+            console.log(ResultObj);
+        }
+    }); 
+
+}
+
+
+function fineAll(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    collection.find().toArray(function(error,ResultObj) {
         if(error) {
             console.log('====================================');
             console.log('failed');
