@@ -11,7 +11,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //insertData(MyMongoCollection);
         //deleteOneMethod(MyMongoCollection);
         //deleteAllData(MyMongoCollection);
-        fineOneWithoutCondition(MyMongoCollection);
+        //fineOneWithoutCondition(MyMongoCollection);
+        fineOneWithCondition(MyMongoCollection);
     }
 });
 
@@ -53,6 +54,24 @@ function fineOneWithoutCondition(MyMongoCollection) {
     var database=MyMongoCollection.db('school');
     var collection=database.collection('students');
     var findOneObj={};
+    collection.findOne(findOneObj,function(error,ResultObj) {
+        if(error) {
+            console.log('====================================');
+            console.log('failed');
+            console.log('====================================');
+        }
+        else {
+            console.log(ResultObj);
+        }
+    }); 
+
+}
+
+
+function fineOneWithCondition(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    var findOneObj={name:"shourov"};
     collection.findOne(findOneObj,function(error,ResultObj) {
         if(error) {
             console.log('====================================');
