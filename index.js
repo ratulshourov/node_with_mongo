@@ -10,7 +10,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         console.log("Connected");
         //insertData(MyMongoCollection);
         //deleteOneMethod(MyMongoCollection);
-        deleteAllData(MyMongoCollection);
+        //deleteAllData(MyMongoCollection);
+        fineOneWithoutCondition(MyMongoCollection);
     }
 });
 
@@ -18,7 +19,7 @@ function insertData(MyMongoCollection) {
     var database=MyMongoCollection.db('school');
     var collection=database.collection('students');
 
-    var myobj = { name: "ashraf", address: "bd" };
+    var myobj = { name: "uddin", address: "bd" };
     collection.insertOne(myobj);
 }
 
@@ -39,6 +40,23 @@ function deleteAllData(MyMongoCollection) {
         if(error) {
             console.log('====================================');
             console.log('failed delete');
+            console.log('====================================');
+        }
+        else {
+            console.log(ResultObj);
+        }
+    }); 
+
+}
+
+function fineOneWithoutCondition(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    var findOneObj={};
+    collection.findOne(findOneObj,function(error,ResultObj) {
+        if(error) {
+            console.log('====================================');
+            console.log('failed');
             console.log('====================================');
         }
         else {
