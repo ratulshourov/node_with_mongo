@@ -19,7 +19,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //findByConditionWithLimit(MyMongoCollection);
         //sortData(MyMongoCollection);
         //UpdateData(MyMongoCollection);
-        createCollection(MyMongoCollection);
+        //createCollection(MyMongoCollection);
+        deleteCollection(MyMongoCollection);
     }
 });
 
@@ -172,6 +173,14 @@ function createCollection(MyMongoCollection) {
     database.createCollection('teachers',function(error,result){
         console.log(result);
     });
-    
 
 }
+
+function deleteCollection(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    database.dropCollection('teachers',function(error,result){
+        console.log(result);
+    });
+
+}
+
