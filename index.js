@@ -18,7 +18,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //findByCondition(MyMongoCollection);
         //findByConditionWithLimit(MyMongoCollection);
         //sortData(MyMongoCollection);
-        UpdateData(MyMongoCollection)
+        //UpdateData(MyMongoCollection);
+        createCollection(MyMongoCollection);
     }
 });
 
@@ -163,5 +164,14 @@ function UpdateData(MyMongoCollection) {
     collection.updateOne(objectQuery,updateData,function(error,result){
         console.log(result);
     });
+
+}
+
+function createCollection(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    database.createCollection('teachers',function(error,result){
+        console.log(result);
+    });
+    
 
 }
