@@ -17,7 +17,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //findAllByProjection(MyMongoCollection);
         //findByCondition(MyMongoCollection);
         //findByConditionWithLimit(MyMongoCollection);
-        sortData(MyMongoCollection)
+        //sortData(MyMongoCollection);
+        UpdateData(MyMongoCollection)
     }
 });
 
@@ -148,6 +149,18 @@ function sortData(MyMongoCollection) {
     //1 sort assending order -1 desending order
     var sortPattern={name:1}
     collection.find().sort(sortPattern).toArray(function(error,result){
+        console.log(result);
+    });
+
+}
+
+function UpdateData(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    //1 sort assending order -1 desending order
+    var objectQuery={name:'shourov',address:'dhaka'}
+    var updateData={$set:{name:'Md.Ratul Uddin Ashraf'}}
+    collection.updateOne(objectQuery,updateData,function(error,result){
         console.log(result);
     });
 
