@@ -13,7 +13,9 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //deleteAllData(MyMongoCollection);
         //fineOneWithoutCondition(MyMongoCollection);
         //fineOneWithCondition(MyMongoCollection);
-        fineAll(MyMongoCollection);
+        //findAll(MyMongoCollection);
+        //findAllByProjection(MyMongoCollection);
+        findByCondition(MyMongoCollection)
     }
 });
 
@@ -87,7 +89,7 @@ function fineOneWithCondition(MyMongoCollection) {
 }
 
 
-function fineAll(MyMongoCollection) {
+function findAll(MyMongoCollection) {
     var database=MyMongoCollection.db('school');
     var collection=database.collection('students');
     collection.find().toArray(function(error,ResultObj) {
@@ -100,5 +102,30 @@ function fineAll(MyMongoCollection) {
             console.log(ResultObj);
         }
     }); 
+
+}
+
+function findAllByProjection(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+
+    var allColumnObj={};
+    var columnName ={'name':''}
+    collection.find(allColumnObj,columnName).toArray(function(error,result){
+        console.log('====================================');
+        console.log(result);
+        console.log('====================================');
+    });
+
+}
+
+
+function findByCondition(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    var dataObj ={name:'shourov',address:'bd'}
+    collection.find(dataObj).toArray(function(error,result){
+        console.log(result);
+    });
 
 }
