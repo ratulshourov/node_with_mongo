@@ -15,7 +15,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //fineOneWithCondition(MyMongoCollection);
         //findAll(MyMongoCollection);
         //findAllByProjection(MyMongoCollection);
-        findByCondition(MyMongoCollection)
+        //findByCondition(MyMongoCollection);
+        findByConditionWithLimit(MyMongoCollection)
     }
 });
 
@@ -125,6 +126,15 @@ function findByCondition(MyMongoCollection) {
     var collection=database.collection('students');
     var dataObj ={name:'shourov',address:'bd'}
     collection.find(dataObj).toArray(function(error,result){
+        console.log(result);
+    });
+
+}
+
+function findByConditionWithLimit(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    collection.find().limit(1).toArray(function(error,result){
         console.log(result);
     });
 
