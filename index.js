@@ -16,7 +16,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //findAll(MyMongoCollection);
         //findAllByProjection(MyMongoCollection);
         //findByCondition(MyMongoCollection);
-        findByConditionWithLimit(MyMongoCollection)
+        //findByConditionWithLimit(MyMongoCollection);
+        sortData(MyMongoCollection)
     }
 });
 
@@ -135,6 +136,18 @@ function findByConditionWithLimit(MyMongoCollection) {
     var database=MyMongoCollection.db('school');
     var collection=database.collection('students');
     collection.find().limit(1).toArray(function(error,result){
+        console.log(result);
+    });
+
+}
+
+
+function sortData(MyMongoCollection) {
+    var database=MyMongoCollection.db('school');
+    var collection=database.collection('students');
+    //1 sort assending order -1 desending order
+    var sortPattern={name:1}
+    collection.find().sort(sortPattern).toArray(function(error,result){
         console.log(result);
     });
 
