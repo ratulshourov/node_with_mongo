@@ -8,8 +8,18 @@ var config={ useUnifiedTopology:true };
 
 app.get('/',function(req,response)
 {
-    response.status(205);
-    response.send('home page');
+    var jsonArray=[
+        {
+            name:"AAA",
+            address:"DHAKA"
+        },
+        {
+            name:"BBB",
+            address:"DHAKA"
+        },
+    ];
+    response.json(jsonArray);
+   
     })
 app.listen(27017,function(req,response){
 console.log('response');
