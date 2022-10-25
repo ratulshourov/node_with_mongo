@@ -20,8 +20,9 @@ app.get('/', function (req, response) {
     // response.json(jsonArray);
     //response.download('./pic.jpg');
    // response.redirect('http://google.com');
-    response.cookie("name","ratul");
-    response.cookie("profession","engineer");
+     //response.cookie("name","ratul");
+    // response.cookie("profession","engineer");
+    response.clearCookie();
     response.send('cookie set successfully');
 })
 //post Request
