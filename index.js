@@ -6,31 +6,31 @@ var app = express();
 var url = 'mongodb://localhost:27017/';
 var config = { useUnifiedTopology: true };
 
-app.get('/', function (req, response) {
-    // var jsonArray=[
-    //     {
-    //         name:"AAA",
-    //         address:"DHAKA"
-    //     },
-    //     {
-    //         name:"BBB",
-    //         address:"DHAKA"
-    //     },
-    // ];
-    // response.json(jsonArray);
-    //response.download('./pic.jpg');
-    // response.redirect('http://google.com');
-    //response.cookie("name","ratul");
-    // response.cookie("profession","engineer");
-    response.clearCookie("name");
-    response.send('cookie set successfully');
-})
+// app.get('/', function (req, response) {
+//     // var jsonArray=[
+//     //     {
+//     //         name:"AAA",
+//     //         address:"DHAKA"
+//     //     },
+//     //     {
+//     //         name:"BBB",
+//     //         address:"DHAKA"
+//     //     },
+//     // ];
+//     // response.json(jsonArray);
+//     //response.download('./pic.jpg');
+//     // response.redirect('http://google.com');
+//     //response.cookie("name","ratul");
+//     // response.cookie("profession","engineer");
+//     response.clearCookie("name");
+//     response.send('cookie set successfully');
+// })
 //post Request
-app.post('/insertintoheader', function (req, response) {
-    response.append("name", "ratul uddin ashraf");
-    response.append("profession", "software engineer");
-    response.send('append successfully');
-})
+// app.post('/insertintoheader', function (req, response) {
+//     response.append("name", "ratul uddin ashraf");
+//     response.append("profession", "software engineer");
+//     response.send('append successfully');
+// })
 
 
 
@@ -58,6 +58,22 @@ mongoDb.connect(url, function (error, MyMongoCollection) {
         //createCollection(MyMongoCollection);
         //deleteCollection(MyMongoCollection);
 
+        // app.post('/insert', function (request, response) {
+        //     var database = MyMongoCollection.db('school');
+        //     var collection = database.collection('students');
+        //     var name = request.query.name;
+        //     var address = request.query.address;
+        //     var myobj = { name: name, address: address };
+        //     collection.insertOne(myobj);
+        //     var data = [
+        //         {
+        //             status: 200,
+        //             message: 'successfully inserted'
+        //         }
+        //     ];
+        //     response.json(data);
+        // })
+/*
         app.post('/insert', function (request, response) {
             var database = MyMongoCollection.db('school');
             var collection = database.collection('students');
@@ -73,6 +89,16 @@ mongoDb.connect(url, function (error, MyMongoCollection) {
             ];
             response.json(data);
         })
+        */
+       /*
+       get data from the postman header
+        */
+       app.get('/datafromHeader', function (request, response) {
+        var database = MyMongoCollection.db('school');
+        var collection = database.collection('students');
+        var name = request.header('userName');
+        response.send(name);
+    })
     }
 });
 
