@@ -6,9 +6,10 @@ var app=express();
 var url = 'mongodb://localhost:27017/';
 var config={ useUnifiedTopology:true };
 
-app.get('/',function(req,response){
-    response.end('running');
-    console.log('response');
+app.get('/',function(req,response)
+{
+    response.status(205);
+    response.send('home page');
     })
 app.listen(27017,function(req,response){
 console.log('response');
