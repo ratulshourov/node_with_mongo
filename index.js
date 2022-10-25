@@ -1,6 +1,6 @@
 var mongoDb = require('mongodb').MongoClient;
 var express = require('express');
-
+var bodyParser = require('body-parser')
 var app = express();
 //var url = 'mongodb+srv://ashraf:01682244160ok@cluster0.cdo9y27.mongodb.net/?retryWrites=true&w=majority';
 var url = 'mongodb://localhost:27017/';
