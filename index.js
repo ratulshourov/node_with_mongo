@@ -1,14 +1,25 @@
 var mongoDb = require('mongodb').MongoClient;
+var express=require('express');
 
-var url = 'mongodb+srv://ashraf:01682244160ok@cluster0.cdo9y27.mongodb.net/?retryWrites=true&w=majority';
+var app=express();
+//var url = 'mongodb+srv://ashraf:01682244160ok@cluster0.cdo9y27.mongodb.net/?retryWrites=true&w=majority';
+var url = 'mongodb://localhost:27017/';
 var config={ useUnifiedTopology:true };
+
+app.get('/',function(req,response){
+    response.end('running');
+    console.log('response');
+    })
+app.listen(27017,function(req,response){
+console.log('response');
+});
 mongoDb.connect(url, function (error,MyMongoCollection) {
     if (error) {
         console.log("Failed Connection");
     }
     else {
         console.log("Connected");
-        //insertData(MyMongoCollection);
+        insertData(MyMongoCollection);
         //deleteOneMethod(MyMongoCollection);
         //deleteAllData(MyMongoCollection);
         //fineOneWithoutCondition(MyMongoCollection);
@@ -20,7 +31,7 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         //sortData(MyMongoCollection);
         //UpdateData(MyMongoCollection);
         //createCollection(MyMongoCollection);
-        deleteCollection(MyMongoCollection);
+        //deleteCollection(MyMongoCollection);
     }
 });
 
