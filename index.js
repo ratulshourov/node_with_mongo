@@ -19,18 +19,21 @@ app.get('/', function (req, response) {
     // ];
     // response.json(jsonArray);
     //response.download('./pic.jpg');
-   // response.redirect('http://google.com');
-     //response.cookie("name","ratul");
+    // response.redirect('http://google.com');
+    //response.cookie("name","ratul");
     // response.cookie("profession","engineer");
     response.clearCookie("name");
     response.send('cookie set successfully');
 })
 //post Request
 app.post('/insertintoheader', function (req, response) {
-    response.append("name","ratul uddin ashraf");
-    response.append("profession","software engineer");
+    response.append("name", "ratul uddin ashraf");
+    response.append("profession", "software engineer");
     response.send('append successfully');
 })
+
+
+
 //response.end('Pic Download');
 app.listen(27017, function (req, response) {
     console.log('response');
@@ -54,6 +57,22 @@ mongoDb.connect(url, function (error, MyMongoCollection) {
         //UpdateData(MyMongoCollection);
         //createCollection(MyMongoCollection);
         //deleteCollection(MyMongoCollection);
+
+        app.post('/insert', function (request, response) {
+            var database = MyMongoCollection.db('school');
+            var collection = database.collection('students');
+            var name = request.query.name;
+            var address = request.query.address;
+            var myobj = { name: name, address: address };
+            collection.insertOne(myobj);
+            var data = [
+                {
+                    status: 200,
+                    message: 'successfully inserted'
+                }
+            ];
+            response.json(data);
+        })
     }
 });
 
