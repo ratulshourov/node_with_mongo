@@ -19,7 +19,8 @@ app.get('/',function(req,response)
     //     },
     // ];
     // response.json(jsonArray);
-    response.download('./pic.jpg');
+    //response.download('./pic.jpg');
+    response.redirect('http://google.com');
     })
    
     //response.end('Pic Download');
