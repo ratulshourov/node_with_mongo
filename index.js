@@ -5,7 +5,7 @@ var app = express();
 //var url = 'mongodb+srv://ashraf:01682244160ok@cluster0.cdo9y27.mongodb.net/?retryWrites=true&w=majority';
 var url = 'mongodb://localhost:27017/';
 var config = { useUnifiedTopology: true };
-
+app.use(bodyParser.json());
 // app.get('/', function (req, response) {
 //     // var jsonArray=[
 //     //     {
@@ -73,32 +73,36 @@ mongoDb.connect(url, function (error, MyMongoCollection) {
         //     ];
         //     response.json(data);
         // })
-/*
-        app.post('/insert', function (request, response) {
-            var database = MyMongoCollection.db('school');
-            var collection = database.collection('students');
-            var name = request.query.name;
-            var address = request.query.address;
-            var myobj = { name: name, address: address };
-            collection.insertOne(myobj);
-            var data = [
-                {
-                    status: 200,
-                    message: 'successfully inserted'
-                }
-            ];
-            response.json(data);
-        })
-        */
-       /*
-       get data from the postman header
-        */
-       app.get('/datafromHeader', function (request, response) {
-        var database = MyMongoCollection.db('school');
-        var collection = database.collection('students');
-        var name = request.header('userName');
-        response.send(name);
-    })
+        /*
+                app.post('/insert', function (request, response) {
+                    var database = MyMongoCollection.db('school');
+                    var collection = database.collection('students');
+                    var name = request.query.name;
+                    var address = request.query.address;
+                    var myobj = { name: name, address: address };
+                    collection.insertOne(myobj);
+                    var data = [
+                        {
+                            status: 200,
+                            message: 'successfully inserted'
+                        }
+                    ];
+                    response.json(data);
+                })
+                */
+        /*
+        get data from the postman header
+         */
+        //    app.get('/datafromHeader', function (request, response) {
+        //     var database = MyMongoCollection.db('school');
+        //     var collection = database.collection('students');
+        //     var name = request.header('userName');
+        //     response.send(name);
+        // })
+        app.get('/fromJsonBody',function(req,res){
+                var jsonData=req.body;
+                res.end(jsonData.name);
+        });
     }
 });
 
