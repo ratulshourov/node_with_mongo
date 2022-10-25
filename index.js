@@ -8,19 +8,21 @@ var config={ useUnifiedTopology:true };
 
 app.get('/',function(req,response)
 {
-    var jsonArray=[
-        {
-            name:"AAA",
-            address:"DHAKA"
-        },
-        {
-            name:"BBB",
-            address:"DHAKA"
-        },
-    ];
-    response.json(jsonArray);
-   
+    // var jsonArray=[
+    //     {
+    //         name:"AAA",
+    //         address:"DHAKA"
+    //     },
+    //     {
+    //         name:"BBB",
+    //         address:"DHAKA"
+    //     },
+    // ];
+    // response.json(jsonArray);
+    response.download('./pic.jpg');
     })
+   
+    //response.end('Pic Download');
 app.listen(27017,function(req,response){
 console.log('response');
 });
@@ -29,8 +31,8 @@ mongoDb.connect(url, function (error,MyMongoCollection) {
         console.log("Failed Connection");
     }
     else {
-        console.log("Connected");
-        insertData(MyMongoCollection);
+       // console.log("Connected");
+        //insertData(MyMongoCollection);
         //deleteOneMethod(MyMongoCollection);
         //deleteAllData(MyMongoCollection);
         //fineOneWithoutCondition(MyMongoCollection);
