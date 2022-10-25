@@ -22,7 +22,7 @@ app.get('/', function (req, response) {
    // response.redirect('http://google.com');
      //response.cookie("name","ratul");
     // response.cookie("profession","engineer");
-    response.clearCookie();
+    response.clearCookie("name");
     response.send('cookie set successfully');
 })
 //post Request
